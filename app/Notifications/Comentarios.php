@@ -11,6 +11,8 @@ class Comentarios extends Notification
 {
     use Queueable;
 
+    protected $post_id;
+
     /**
      * Create a new notification instance.
      *
@@ -18,7 +20,7 @@ class Comentarios extends Notification
      */
     public function __construct()
     {
-        //
+        $this->post_id = $post_id;
     }
 
     /**
@@ -49,8 +51,8 @@ class Comentarios extends Notification
     public function toDatabase()
     {
         return [
-            'valor' => 100,
-            'descripcion' => 'Se agrego un nuevo comentario su publicaciones'
+            'publicacion' => $this->post_id,
+            'message' => 'Tiene un nuevo comentario en su publicacion'
         ];
     }
 

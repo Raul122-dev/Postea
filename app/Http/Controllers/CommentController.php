@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
-
+use App\Notifications\Comentarios;
 
 class CommentController extends Controller
 {
@@ -27,7 +27,7 @@ class CommentController extends Controller
         $post = Post::find($request->get('post_id'));
         $post->comments()->save($comment);
 
-        #$post->notify(new App\Notifications\Comentarios());
+        $post->user()->get()[0]->notify(new Comentarios($post->id));
 
         return redirect()->route('post', ['id' => $request->get('post_id')]);
     }

@@ -30,7 +30,11 @@ Route::post('/comments', 'CommentController@store');
 Route::delete('/posts/{id}', 'PostController@destroy')->name('posts.destroy');
 Route::get('usuario/editar', 'UserController@edit')->name('editarUsuario');
 Route::post('usuario/editar', 'UserController@update');
-    
+Route::get('/notificaciones', function () {
+    return view('posts.notificaciones');
+})->name('notificaciones');
+
+
 Auth::routes();
 
 #Route::get('/home', 'PostController@index')->name('home');

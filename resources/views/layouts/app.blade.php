@@ -51,6 +51,24 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Mis Notificaciones! <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @foreach(Auth::user()->notifications as $notificacion)
+                                    <a class="dropdown-item" href="{{ action('PostController@show', $notificacion->data['publicacion']) }}">
+                                        {{ $notificacion->data["message"] }}
+                                    </a>
+                                    @endforeach
+
+                                    <a class="dropdown-item" href="{{ route('notificaciones') }}">
+                                        Todas las Notificaiones.
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
